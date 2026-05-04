@@ -19,3 +19,7 @@ python-dateutil==2.9.0
 
 # PostgreSQL Python driver
 psycopg2-binary==2.9.9
+
+# dbt - Data Build Tool (for dbt_pipeline DAG)
+dbt-core==1.7.0
+dbt-postgres==1.7.0

@@ -4,6 +4,7 @@
 talastock:
   target: dev
   outputs:
+    # Local development — run dbt directly on your machine
     dev:
       type: postgres
       host: localhost
@@ -16,11 +17,26 @@ talastock:
       keepalives_idle: 0
       connect_timeout: 10
       search_path: analytics,staging,raw,public
-    
+
+    # Docker / Airflow — dbt runs inside the Airflow container
+    # The warehouse is reachable via Docker network hostname
+    docker:
+      type: postgres
+      host: talastock-warehouse
+      port: 5432
+      user: warehouse_user
+      password: warehouse_pass
+      dbname: talastock_warehouse
+      schema: analytics
+      threads: 4
+      keepalives_idle: 0
+      connect_timeout: 10
+      search_path: analytics,staging,raw,public
+
     prod:
       type: postgres
-      host: localhost
-      port: 5433
+      host: talastock-warehouse
+      port: 5432
       user: warehouse_user
       password: warehouse_pass
       dbname: talastock_warehouse
@@ -31,8 +47,6 @@ talastock:
       search_path: analytics,staging,raw,public
 
 # Notes:
-# - Default target is 'dev' (use --target prod to override)
-# - Port 5433 matches your warehouse Docker setup
-# - Schema 'analytics' is where dbt will create models
-# - Threads control parallelism (4 for dev, 8 for prod)
-# - search_path allows dbt to find tables in multiple schemas
+# - dev    → use when running dbt locally (port 5433, localhost)
+# - docker → use when running dbt inside Airflow container (port 5432, Docker hostname)
+# - prod   → use for production runs

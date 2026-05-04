@@ -15,6 +15,7 @@ Phase: 3 - Data Warehouse & Analytics
 
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 from datetime import datetime, timedelta
 import pandas as pd
 import psycopg2
@@ -790,6 +791,7 @@ def warehouse_pipeline_complete():
         
         print("\n✅ All data loaded successfully!")
         print("🎨 View in pgAdmin: http://localhost:5050")
+        print("🚀 Triggering dbt pipeline next...")
         print("=" * 60)
         
     finally:
@@ -799,6 +801,17 @@ def warehouse_pipeline_complete():
 complete_task = PythonOperator(
     task_id='warehouse_pipeline_complete',
     python_callable=warehouse_pipeline_complete,
+    dag=dag,
+)
+
+# ============================================================
+# Task 14: Trigger dbt Pipeline
+# ============================================================
+
+trigger_dbt_task = TriggerDagRunOperator(
+    task_id='trigger_dbt_pipeline',
+    trigger_dag_id='dbt_pipeline',
+    wait_for_completion=False,  # Don't block — let dbt run independently
     dag=dag,
 )
 
@@ -861,3 +874,6 @@ build_fact_sales_task >> calculate_category_performance_task
 calculate_daily_summary_task >> complete_task
 calculate_product_performance_task >> complete_task
 calculate_category_performance_task >> complete_task
+
+# Complete → trigger dbt pipeline
+complete_task >> trigger_dbt_task
