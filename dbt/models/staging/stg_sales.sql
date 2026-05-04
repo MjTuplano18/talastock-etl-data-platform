@@ -22,7 +22,7 @@ cleaned AS (
         -- Timestamp
         timestamp,
         DATE(timestamp) AS sale_date,
-        TIME(timestamp) AS sale_time,
+        timestamp::time AS sale_time,
         
         -- Product reference
         product_sku,
@@ -55,6 +55,8 @@ cleaned AS (
         AND quantity > 0
         AND unit_price > 0
         AND total_amount > 0
+        AND payment_method NOT IN ('NaN', '')
+        AND customer_type NOT IN ('NaN', '')
 )
 
 SELECT * FROM cleaned

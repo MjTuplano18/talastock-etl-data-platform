@@ -33,6 +33,8 @@ final AS (
         name,
         category,
         brand,
+        unit,
+        supplier,
         
         -- Pricing
         price,
@@ -53,8 +55,7 @@ final AS (
         END AS price_category,
         
         -- Metadata
-        created_at,
-        updated_at
+        loaded_at
         
     FROM products
 )

@@ -23,6 +23,8 @@ cleaned AS (
         name,
         category,
         brand,
+        unit,
+        supplier,
         
         -- Pricing
         price,
@@ -32,19 +34,13 @@ cleaned AS (
             2
         ) AS profit_margin_pct,
         
-        -- Status
-        is_active,
-        
         -- Metadata
-        created_at,
-        updated_at,
         loaded_at,
         source_file,
         load_id
         
     FROM source
-    WHERE is_active = true
-      AND price > 0
+    WHERE price > 0
       AND cost_price >= 0
 )
 
