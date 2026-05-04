@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  warehouse:
+    image: postgres:15
+    container_name: talastock-warehouse
+    environment:
+      POSTGRES_USER: warehouse_user
+      POSTGRES_PASSWORD: warehouse_pass
+      POSTGRES_DB: talastock_warehouse
+    ports:
+      - "5433:5432"  # Use 5433 to avoid conflict with any existing PostgreSQL
+    volumes:
+      - warehouse_data:/var/lib/postgresql/data
+      - ./schema:/docker-entrypoint-initdb.d  # Auto-run schema files on first start
+    networks:
+      - data-platform
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U warehouse_user -d talastock_warehouse"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: talastock-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@talastock.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'  # Disable login for local use
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - data-platform
+    depends_on:
+      - warehouse
+
+volumes:
+  warehouse_data:
+  pgadmin_data:
+
+networks:
+  data-platform:
+    name: data-platform
+    driver: bridge

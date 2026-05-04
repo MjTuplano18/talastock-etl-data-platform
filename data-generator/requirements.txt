@@ -1,0 +1,11 @@
+# Enterprise Data Platform - Data Generator Dependencies
+# Phase 1: Realistic Business Data Generation
+
+# Core data generation
+faker==24.0.0              # Generate realistic fake data
+pandas>=2.2.0              # Data manipulation and analysis (use latest with pre-built wheels)
+numpy>=1.26.0              # Statistical distributions and numerical operations (use latest with pre-built wheels)
+python-dateutil==2.9.0     # Date/time utilities
+
+# Excel file generation
+openpyxl==3.1.2            # Read/write Excel files

@@ -1,0 +1,38 @@
+# Airflow
+airflow.db
+airflow.cfg
+webserver_config.py
+airflow-webserver.pid
+standalone_admin_password.txt
+
+# Logs
+logs/
+*.log
+
+# Virtual Environment
+venv/
+.venv/
+ENV/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Airflow specific
+*.db-shm
+*.db-wal

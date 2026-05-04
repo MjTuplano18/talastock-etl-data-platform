@@ -1,0 +1,298 @@
+{
+  "products": [
+    {
+      "name": "Lucky Me Pancit Canton Original",
+      "category": "Food",
+      "brand": "Lucky Me",
+      "base_price": 15.00,
+      "unit": "pack"
+    },
+    {
+      "name": "Lucky Me Pancit Canton Chilimansi",
+      "category": "Food",
+      "brand": "Lucky Me",
+      "base_price": 15.00,
+      "unit": "pack"
+    },
+    {
+      "name": "Lucky Me Instant Mami Chicken",
+      "category": "Food",
+      "brand": "Lucky Me",
+      "base_price": 12.00,
+      "unit": "pack"
+    },
+    {
+      "name": "Nissin Cup Noodles Seafood",
+      "category": "Food",
+      "brand": "Nissin",
+      "base_price": 25.00,
+      "unit": "cup"
+    },
+    {
+      "name": "Payless Pancit Canton",
+      "category": "Food",
+      "brand": "Payless",
+      "base_price": 10.00,
+      "unit": "pack"
+    },
+    {
+      "name": "Argentina Corned Beef 150g",
+      "category": "Food",
+      "brand": "Argentina",
+      "base_price": 45.00,
+      "unit": "can"
+    },
+    {
+      "name": "Purefoods Corned Beef 175g",
+      "category": "Food",
+      "brand": "Purefoods",
+      "base_price": 55.00,
+      "unit": "can"
+    },
+    {
+      "name": "CDO Liver Spread 85g",
+      "category": "Food",
+      "brand": "CDO",
+      "base_price": 28.00,
+      "unit": "can"
+    },
+    {
+      "name": "Century Tuna Flakes in Oil 155g",
+      "category": "Food",
+      "brand": "Century",
+      "base_price": 38.00,
+      "unit": "can"
+    },
+    {
+      "name": "Ligo Sardines in Tomato Sauce 155g",
+      "category": "Food",
+      "brand": "Ligo",
+      "base_price": 22.00,
+      "unit": "can"
+    },
+    {
+      "name": "Coca-Cola 1.5L",
+      "category": "Beverage",
+      "brand": "Coca-Cola",
+      "base_price": 65.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Coca-Cola 500ml",
+      "category": "Beverage",
+      "brand": "Coca-Cola",
+      "base_price": 30.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Sprite 1.5L",
+      "category": "Beverage",
+      "brand": "Sprite",
+      "base_price": 65.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Royal Tru-Orange 1.5L",
+      "category": "Beverage",
+      "brand": "Royal",
+      "base_price": 60.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Pepsi 1.5L",
+      "category": "Beverage",
+      "brand": "Pepsi",
+      "base_price": 65.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Nescafé 3-in-1 Original 10s",
+      "category": "Beverage",
+      "brand": "Nescafé",
+      "base_price": 85.00,
+      "unit": "box"
+    },
+    {
+      "name": "Nescafé Classic 50g",
+      "category": "Beverage",
+      "brand": "Nescafé",
+      "base_price": 120.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Great Taste White Coffee 10s",
+      "category": "Beverage",
+      "brand": "Great Taste",
+      "base_price": 75.00,
+      "unit": "box"
+    },
+    {
+      "name": "San Miguel Pale Pilsen 330ml",
+      "category": "Beverage",
+      "brand": "San Miguel",
+      "base_price": 45.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Red Horse Beer 500ml",
+      "category": "Beverage",
+      "brand": "Red Horse",
+      "base_price": 55.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Datu Puti Vinegar 385ml",
+      "category": "Essentials",
+      "brand": "Datu Puti",
+      "base_price": 25.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Datu Puti Soy Sauce 385ml",
+      "category": "Essentials",
+      "brand": "Datu Puti",
+      "base_price": 28.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Silver Swan Soy Sauce 385ml",
+      "category": "Essentials",
+      "brand": "Silver Swan",
+      "base_price": 30.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "UFC Banana Catsup 320g",
+      "category": "Essentials",
+      "brand": "UFC",
+      "base_price": 35.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Del Monte Tomato Sauce 250g",
+      "category": "Essentials",
+      "brand": "Del Monte",
+      "base_price": 32.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Mama Sita's Adobo Mix 50g",
+      "category": "Essentials",
+      "brand": "Mama Sita's",
+      "base_price": 18.00,
+      "unit": "pack"
+    },
+    {
+      "name": "Knorr Chicken Cube 8s",
+      "category": "Essentials",
+      "brand": "Knorr",
+      "base_price": 22.00,
+      "unit": "box"
+    },
+    {
+      "name": "Maggi Magic Sarap 8g",
+      "category": "Essentials",
+      "brand": "Maggi",
+      "base_price": 8.00,
+      "unit": "sachet"
+    },
+    {
+      "name": "Tide Powder Detergent 35g",
+      "category": "Household",
+      "brand": "Tide",
+      "base_price": 12.00,
+      "unit": "sachet"
+    },
+    {
+      "name": "Tide Powder Detergent 1kg",
+      "category": "Household",
+      "brand": "Tide",
+      "base_price": 180.00,
+      "unit": "pack"
+    },
+    {
+      "name": "Surf Powder Detergent 55g",
+      "category": "Household",
+      "brand": "Surf",
+      "base_price": 15.00,
+      "unit": "sachet"
+    },
+    {
+      "name": "Ariel Powder Detergent 35g",
+      "category": "Household",
+      "brand": "Ariel",
+      "base_price": 13.00,
+      "unit": "sachet"
+    },
+    {
+      "name": "Downy Fabric Softener 35ml",
+      "category": "Household",
+      "brand": "Downy",
+      "base_price": 10.00,
+      "unit": "sachet"
+    },
+    {
+      "name": "Joy Dishwashing Liquid 250ml",
+      "category": "Household",
+      "brand": "Joy",
+      "base_price": 45.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Zonrox Bleach 500ml",
+      "category": "Household",
+      "brand": "Zonrox",
+      "base_price": 38.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Safeguard Bar Soap 135g",
+      "category": "Personal Care",
+      "brand": "Safeguard",
+      "base_price": 42.00,
+      "unit": "piece"
+    },
+    {
+      "name": "Palmolive Naturals Shampoo 180ml",
+      "category": "Personal Care",
+      "brand": "Palmolive",
+      "base_price": 85.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Colgate Toothpaste 150g",
+      "category": "Personal Care",
+      "brand": "Colgate",
+      "base_price": 95.00,
+      "unit": "tube"
+    },
+    {
+      "name": "Close Up Toothpaste 160g",
+      "category": "Personal Care",
+      "brand": "Close Up",
+      "base_price": 88.00,
+      "unit": "tube"
+    },
+    {
+      "name": "Head & Shoulders Shampoo 170ml",
+      "category": "Personal Care",
+      "brand": "Head & Shoulders",
+      "base_price": 125.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Cream Silk Conditioner 180ml",
+      "category": "Personal Care",
+      "brand": "Cream Silk",
+      "base_price": 95.00,
+      "unit": "bottle"
+    },
+    {
+      "name": "Dove Beauty Bar 135g",
+      "category": "Personal Care",
+      "brand": "Dove",
+      "base_price": 58.00,
+      "unit": "piece"
+    }
+  ]
+}

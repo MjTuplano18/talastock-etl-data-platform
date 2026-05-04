@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-05-04T02:31:37.436807",
+  "products": {
+    "total_count": 100,
+    "categories": 5,
+    "brands": 36,
+    "avg_price": 47.0191,
+    "avg_profit_margin": 25.5444
+  },
+  "sales": {
+    "total_count": 10073,
+    "total_revenue": 1006672.47,
+    "avg_transaction": 101.37688519637462,
+    "date_range": {
+      "start": "2025-11-05 03:12:51",
+      "end": "2026-05-29 13:15:43"
+    }
+  }
+}

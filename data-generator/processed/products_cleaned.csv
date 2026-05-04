@@ -1,0 +1,101 @@
+sku,name,category,brand,price,cost_price,unit,supplier,profit_margin
+LU-FOOD-001,Lucky Me Pancit Canton Original,Food,Lucky Me,15.52,11.16,pack,Lucky Me Distributor,28.09
+LU-FOOD-002,Lucky Me Pancit Canton Chilimansi,Food,Lucky Me,14.88,10.64,pack,Lucky Me Distributor,28.49
+LU-FOOD-003,Lucky Me Instant Mami Chicken,Food,Lucky Me,12.46,8.73,pack,Lucky Me Distributor,29.94
+NI-FOOD-004,Nissin Cup Noodles Seafood,Food,Nissin,25.36,18.99,cup,Nissin Distributor,25.12
+PA-FOOD-005,Payless Pancit Canton,Food,Payless,10.29,7.23,pack,Payless Distributor,29.74
+AR-FOOD-006,Argentina Corned Beef 150g,Food,Argentina,43.42,32.34,can,Argentina Distributor,25.52
+PU-FOOD-007,Purefoods Corned Beef 175g,Food,Purefoods,53.79,38.33,can,Purefoods Distributor,28.74
+CD-FOOD-008,CDO Liver Spread 85g,Food,CDO,28.1,20.81,can,CDO Distributor,25.94
+CE-FOOD-009,Century Tuna Flakes in Oil 155g,Food,Century,37.38,29.44,can,Century Distributor,21.24
+LI-FOOD-010,Ligo Sardines in Tomato Sauce 155g,Food,Ligo,21.37,15.77,can,Ligo Distributor,26.2
+CO-BEVE-011,Coca-Cola 1.5L,Beverage,Coca-Cola,67.79,50.82,bottle,Coca-Cola Distributor,25.03
+CO-BEVE-012,Coca-Cola 500ml,Beverage,Coca-Cola,31.01,22.25,bottle,Coca-Cola Distributor,28.25
+SP-BEVE-013,Sprite 1.5L,Beverage,Sprite,66.04,49.15,bottle,Sprite Distributor,25.58
+RO-BEVE-014,Royal Tru-Orange 1.5L,Beverage,Royal,60.69,45.66,bottle,Royal Distributor,24.77
+PE-BEVE-015,Pepsi 1.5L,Beverage,Pepsi,65.33,50.53,bottle,Pepsi Distributor,22.65
+NE-BEVE-016,Nescafé 3-in-1 Original 10s,Beverage,Nescafé,83.58,58.68,box,Nescafé Distributor,29.79
+NE-BEVE-017,Nescafé Classic 50g,Beverage,Nescafé,125.6,94.92,bottle,Nescafé Distributor,24.43
+GR-BEVE-018,Great Taste White Coffee 10s,Beverage,Great Taste,76.54,55.41,box,Great Taste Distributor,27.61
+SA-BEVE-019,San Miguel Pale Pilsen 330ml,Beverage,San Miguel,43.99,31.15,bottle,San Miguel Distributor,29.19
+RE-BEVE-020,Red Horse Beer 500ml,Beverage,Red Horse,52.88,41.04,bottle,Red Horse Distributor,22.39
+DA-ESSE-021,Datu Puti Vinegar 385ml,Essentials,Datu Puti,25.17,19.73,bottle,Datu Puti Distributor,21.61
+DA-ESSE-022,Datu Puti Soy Sauce 385ml,Essentials,Datu Puti,26.62,21.25,bottle,Datu Puti Distributor,20.17
+SI-ESSE-023,Silver Swan Soy Sauce 385ml,Essentials,Silver Swan,28.51,21.87,bottle,Silver Swan Distributor,23.29
+UF-ESSE-024,UFC Banana Catsup 320g,Essentials,UFC,34.82,26.86,bottle,UFC Distributor,22.86
+DE-ESSE-025,Del Monte Tomato Sauce 250g,Essentials,Del Monte,33.13,24.74,bottle,Del Monte Distributor,25.32
+MA-ESSE-026,Mama Sita's Adobo Mix 50g,Essentials,Mama Sita's,17.51,12.55,pack,Mama Sita's Distributor,28.33
+KN-ESSE-027,Knorr Chicken Cube 8s,Essentials,Knorr,22.49,16.76,box,Knorr Distributor,25.48
+MA-ESSE-028,Maggi Magic Sarap 8g,Essentials,Maggi,7.81,5.94,sachet,Maggi Distributor,23.94
+TI-HOUS-029,Tide Powder Detergent 35g,Household,Tide,11.98,9.26,sachet,Tide Distributor,22.7
+TI-HOUS-030,Tide Powder Detergent 1kg,Household,Tide,180.28,131.26,pack,Tide Distributor,27.19
+SU-HOUS-031,Surf Powder Detergent 55g,Household,Surf,14.79,11.65,sachet,Surf Distributor,21.23
+AR-HOUS-032,Ariel Powder Detergent 35g,Household,Ariel,13.37,9.57,sachet,Ariel Distributor,28.42
+DO-HOUS-033,Downy Fabric Softener 35ml,Household,Downy,9.64,7.68,sachet,Downy Distributor,20.33
+JO-HOUS-034,Joy Dishwashing Liquid 250ml,Household,Joy,45.29,33.7,bottle,Joy Distributor,25.59
+ZO-HOUS-035,Zonrox Bleach 500ml,Household,Zonrox,37.43,28.56,bottle,Zonrox Distributor,23.7
+SA-PERS-036,Safeguard Bar Soap 135g,Personal Care,Safeguard,43.92,31.72,piece,Safeguard Distributor,27.78
+PA-PERS-037,Palmolive Naturals Shampoo 180ml,Personal Care,Palmolive,84.46,65.24,bottle,Palmolive Distributor,22.76
+CO-PERS-038,Colgate Toothpaste 150g,Personal Care,Colgate,91.58,68.44,tube,Colgate Distributor,25.27
+CL-PERS-039,Close Up Toothpaste 160g,Personal Care,Close Up,90.58,65.32,tube,Close Up Distributor,27.89
+HE-PERS-040,Head & Shoulders Shampoo 170ml,Personal Care,Head & Shoulders,123.15,91.51,bottle,Head & Shoulders Distributor,25.69
+CR-PERS-041,Cream Silk Conditioner 180ml,Personal Care,Cream Silk,91.19,69.1,bottle,Cream Silk Distributor,24.22
+DO-PERS-042,Dove Beauty Bar 135g,Personal Care,Dove,59.77,46.62,piece,Dove Distributor,22.0
+LU-FOOD-043,Lucky Me Pancit Canton Original,Food,Lucky Me,15.08,11.08,pack,Lucky Me Distributor,26.53
+LU-FOOD-044,Lucky Me Pancit Canton Chilimansi,Food,Lucky Me,15.05,11.25,pack,Lucky Me Distributor,25.25
+LU-FOOD-045,Lucky Me Instant Mami Chicken,Food,Lucky Me,12.01,9.05,pack,Lucky Me Distributor,24.65
+NI-FOOD-046,Nissin Cup Noodles Seafood,Food,Nissin,26.04,18.76,cup,Nissin Distributor,27.96
+PA-FOOD-047,Payless Pancit Canton,Food,Payless,9.97,7.13,pack,Payless Distributor,28.49
+AR-FOOD-048,Argentina Corned Beef 150g,Food,Argentina,46.8,36.91,can,Argentina Distributor,21.13
+PU-FOOD-049,Purefoods Corned Beef 175g,Food,Purefoods,55.1,41.94,can,Purefoods Distributor,23.88
+CD-FOOD-050,CDO Liver Spread 85g,Food,CDO,28.07,20.09,can,CDO Distributor,28.43
+CE-FOOD-051,Century Tuna Flakes in Oil 155g,Food,Century,36.67,28.62,can,Century Distributor,21.95
+LI-FOOD-052,Ligo Sardines in Tomato Sauce 155g,Food,Ligo,22.47,15.85,can,Ligo Distributor,29.46
+CO-BEVE-053,Coca-Cola 1.5L,Beverage,Coca-Cola,62.33,44.76,bottle,Coca-Cola Distributor,28.19
+CO-BEVE-054,Coca-Cola 500ml,Beverage,Coca-Cola,30.4,21.29,bottle,Coca-Cola Distributor,29.97
+SP-BEVE-055,Sprite 1.5L,Beverage,Sprite,63.62,50.14,bottle,Sprite Distributor,21.19
+RO-BEVE-056,Royal Tru-Orange 1.5L,Beverage,Royal,59.88,44.36,bottle,Royal Distributor,25.92
+PE-BEVE-057,Pepsi 1.5L,Beverage,Pepsi,62.03,47.95,bottle,Pepsi Distributor,22.7
+NE-BEVE-058,Nescafé 3-in-1 Original 10s,Beverage,Nescafé,83.24,62.15,box,Nescafé Distributor,25.34
+NE-BEVE-059,Nescafé Classic 50g,Beverage,Nescafé,125.26,88.86,bottle,Nescafé Distributor,29.06
+GR-BEVE-060,Great Taste White Coffee 10s,Beverage,Great Taste,75.78,58.88,box,Great Taste Distributor,22.3
+SA-BEVE-061,San Miguel Pale Pilsen 330ml,Beverage,San Miguel,45.68,36.17,bottle,San Miguel Distributor,20.82
+RE-BEVE-062,Red Horse Beer 500ml,Beverage,Red Horse,57.04,44.99,bottle,Red Horse Distributor,21.13
+DA-ESSE-063,Datu Puti Vinegar 385ml,Essentials,Datu Puti,24.42,18.77,bottle,Datu Puti Distributor,23.14
+DA-ESSE-064,Datu Puti Soy Sauce 385ml,Essentials,Datu Puti,27.79,20.22,bottle,Datu Puti Distributor,27.24
+SI-ESSE-065,Silver Swan Soy Sauce 385ml,Essentials,Silver Swan,30.48,21.54,bottle,Silver Swan Distributor,29.33
+UF-ESSE-066,UFC Banana Catsup 320g,Essentials,UFC,35.76,27.9,bottle,UFC Distributor,21.98
+DE-ESSE-067,Del Monte Tomato Sauce 250g,Essentials,Del Monte,32.64,23.05,bottle,Del Monte Distributor,29.38
+MA-ESSE-068,Mama Sita's Adobo Mix 50g,Essentials,Mama Sita's,18.44,14.56,pack,Mama Sita's Distributor,21.04
+KN-ESSE-069,Knorr Chicken Cube 8s,Essentials,Knorr,22.35,15.99,box,Knorr Distributor,28.46
+MA-ESSE-070,Maggi Magic Sarap 8g,Essentials,Maggi,7.9,6.03,sachet,Maggi Distributor,23.67
+TI-HOUS-071,Tide Powder Detergent 35g,Household,Tide,11.9,8.87,sachet,Tide Distributor,25.46
+TI-HOUS-072,Tide Powder Detergent 1kg,Household,Tide,188.55,138.65,pack,Tide Distributor,26.47
+SU-HOUS-073,Surf Powder Detergent 55g,Household,Surf,15.17,11.8,sachet,Surf Distributor,22.21
+AR-HOUS-074,Ariel Powder Detergent 35g,Household,Ariel,13.04,9.17,sachet,Ariel Distributor,29.68
+DO-HOUS-075,Downy Fabric Softener 35ml,Household,Downy,10.47,7.55,sachet,Downy Distributor,27.89
+JO-HOUS-076,Joy Dishwashing Liquid 250ml,Household,Joy,43.15,31.1,bottle,Joy Distributor,27.93
+ZO-HOUS-077,Zonrox Bleach 500ml,Household,Zonrox,36.94,28.11,bottle,Zonrox Distributor,23.9
+SA-PERS-078,Safeguard Bar Soap 135g,Personal Care,Safeguard,43.43,32.08,piece,Safeguard Distributor,26.13
+PA-PERS-079,Palmolive Naturals Shampoo 180ml,Personal Care,Palmolive,87.32,65.42,bottle,Palmolive Distributor,25.08
+CO-PERS-080,Colgate Toothpaste 150g,Personal Care,Colgate,92.03,65.24,tube,Colgate Distributor,29.11
+CL-PERS-081,Close Up Toothpaste 160g,Personal Care,Close Up,90.38,65.19,tube,Close Up Distributor,27.87
+HE-PERS-082,Head & Shoulders Shampoo 170ml,Personal Care,Head & Shoulders,121.56,92.31,bottle,Head & Shoulders Distributor,24.06
+CR-PERS-083,Cream Silk Conditioner 180ml,Personal Care,Cream Silk,94.37,71.27,bottle,Cream Silk Distributor,24.48
+DO-PERS-084,Dove Beauty Bar 135g,Personal Care,Dove,56.39,39.87,piece,Dove Distributor,29.3
+LU-FOOD-085,Lucky Me Pancit Canton Original,Food,Lucky Me,14.77,11.81,pack,Lucky Me Distributor,20.04
+LU-FOOD-086,Lucky Me Pancit Canton Chilimansi,Food,Lucky Me,14.9,11.07,pack,Lucky Me Distributor,25.7
+LU-FOOD-087,Lucky Me Instant Mami Chicken,Food,Lucky Me,12.22,8.77,pack,Lucky Me Distributor,28.23
+NI-FOOD-088,Nissin Cup Noodles Seafood,Food,Nissin,24.15,17.77,cup,Nissin Distributor,26.42
+PA-FOOD-089,Payless Pancit Canton,Food,Payless,9.87,7.49,pack,Payless Distributor,24.11
+AR-FOOD-090,Argentina Corned Beef 150g,Food,Argentina,46.76,33.71,can,Argentina Distributor,27.91
+PU-FOOD-091,Purefoods Corned Beef 175g,Food,Purefoods,52.85,41.08,can,Purefoods Distributor,22.27
+CD-FOOD-092,CDO Liver Spread 85g,Food,CDO,26.75,20.35,can,CDO Distributor,23.93
+CE-FOOD-093,Century Tuna Flakes in Oil 155g,Food,Century,38.49,28.83,can,Century Distributor,25.1
+LI-FOOD-094,Ligo Sardines in Tomato Sauce 155g,Food,Ligo,21.59,15.66,can,Ligo Distributor,27.47
+CO-BEVE-095,Coca-Cola 1.5L,Beverage,Coca-Cola,63.41,45.33,bottle,Coca-Cola Distributor,28.51
+CO-BEVE-096,Coca-Cola 500ml,Beverage,Coca-Cola,30.53,21.89,bottle,Coca-Cola Distributor,28.3
+SP-BEVE-097,Sprite 1.5L,Beverage,Sprite,65.31,46.48,bottle,Sprite Distributor,28.83
+RO-BEVE-098,Royal Tru-Orange 1.5L,Beverage,Royal,60.59,45.62,bottle,Royal Distributor,24.71
+PE-BEVE-099,Pepsi 1.5L,Beverage,Pepsi,65.09,49.1,bottle,Pepsi Distributor,24.57
+NE-BEVE-100,Nescafé 3-in-1 Original 10s,Beverage,Nescafé,88.12,65.47,box,Nescafé Distributor,25.7
