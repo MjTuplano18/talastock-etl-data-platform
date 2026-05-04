@@ -1,0 +1,204 @@
+version: 2
+
+models:
+  # Dimension Models
+  - name: dim_products
+    description: "Product dimension table with surrogate keys and business attributes"
+    columns:
+      - name: product_key
+        description: "Surrogate key for product dimension"
+        tests:
+          - unique
+          - not_null
+      
+      - name: sku
+        description: "Natural key - Product SKU"
+        tests:
+          - unique
+          - not_null
+      
+      - name: name
+        description: "Product name"
+        tests:
+          - not_null
+      
+      - name: category
+        description: "Product category"
+        tests:
+          - not_null
+      
+      - name: price
+        description: "Selling price in PHP"
+        tests:
+          - not_null
+      
+      - name: profit_margin
+        description: "Profit margin percentage"
+      
+      - name: profit_margin_category
+        description: "Profit margin category (High/Medium/Low)"
+        tests:
+          - accepted_values:
+              values: ['High', 'Medium', 'Low']
+      
+      - name: price_category
+        description: "Price category (Budget/Standard/Premium)"
+        tests:
+          - accepted_values:
+              values: ['Budget', 'Standard', 'Premium']
+  
+  - name: dim_dates
+    description: "Date dimension table with calendar attributes and business flags"
+    columns:
+      - name: date_key
+        description: "Surrogate key in YYYYMMDD format"
+        tests:
+          - unique
+          - not_null
+      
+      - name: date
+        description: "Full date"
+        tests:
+          - unique
+          - not_null
+      
+      - name: year
+        description: "Year (YYYY)"
+        tests:
+          - not_null
+      
+      - name: month_number
+        description: "Month number (1-12)"
+        tests:
+          - not_null
+      
+      - name: day_of_week_number
+        description: "Day of week (0=Sunday, 6=Saturday)"
+        tests:
+          - not_null
+      
+      - name: is_weekend
+        description: "Weekend flag"
+        tests:
+          - not_null
+      
+      - name: is_payday
+        description: "Payday flag (15th, 30th, 31st)"
+        tests:
+          - not_null
+  
+  - name: dim_times
+    description: "Time dimension table with intraday attributes and business periods"
+    columns:
+      - name: time_key
+        description: "Surrogate key in HHMM format"
+        tests:
+          - unique
+          - not_null
+      
+      - name: time
+        description: "Time value"
+        tests:
+          - unique
+          - not_null
+      
+      - name: hour_24
+        description: "Hour in 24-hour format (0-23)"
+        tests:
+          - not_null
+      
+      - name: time_period
+        description: "Time period (Morning/Afternoon/Evening/Night)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Morning', 'Afternoon', 'Evening', 'Night']
+      
+      - name: is_peak_hour
+        description: "Peak hour flag"
+        tests:
+          - not_null
+      
+      - name: is_business_hours
+        description: "Business hours flag"
+        tests:
+          - not_null
+  
+  # Fact Models
+  - name: fact_sales
+    description: "Sales fact table with measures and foreign keys to dimensions"
+    columns:
+      - name: sale_key
+        description: "Surrogate key for sales fact"
+        tests:
+          - unique
+          - not_null
+      
+      - name: transaction_id
+        description: "Natural key - Transaction ID"
+        tests:
+          - unique
+          - not_null
+      
+      - name: product_key
+        description: "Foreign key to dim_products"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: product_key
+      
+      - name: date_key
+        description: "Foreign key to dim_dates"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_dates')
+              field: date_key
+      
+      - name: time_key
+        description: "Foreign key to dim_times"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_times')
+              field: time_key
+      
+      - name: quantity
+        description: "Quantity sold"
+        tests:
+          - not_null
+      
+      - name: unit_price
+        description: "Price per unit"
+        tests:
+          - not_null
+      
+      - name: total_amount
+        description: "Total transaction amount"
+        tests:
+          - not_null
+      
+      - name: cost
+        description: "Total cost"
+        tests:
+          - not_null
+      
+      - name: profit
+        description: "Total profit"
+        tests:
+          - not_null
+      
+      - name: payment_method
+        description: "Payment method"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Cash', 'GCash', 'Card']
+      
+      - name: customer_type
+        description: "Customer type"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['walk-in', 'regular', 'wholesale']

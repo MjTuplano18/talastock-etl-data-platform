@@ -1,0 +1,80 @@
+# dbt Project Configuration for Talastock Data Platform
+
+name: 'talastock'
+version: '1.0.0'
+config-version: 2
+
+# Project profile (connects to database)
+profile: 'talastock'
+
+# Directories
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+  - "logs"
+
+# Model configurations
+models:
+  talastock:
+    # Staging models - views for fast development
+    staging:
+      +materialized: view
+      +schema: staging
+      
+    # Marts models - tables for production use
+    marts:
+      +materialized: table
+      +schema: analytics
+      dimensions:
+        +tags: ["dimensions"]
+      facts:
+        +tags: ["facts"]
+    
+    # Aggregate models - tables with summary data
+    aggregates:
+      +materialized: table
+      +schema: analytics
+      +tags: ["aggregates"]
+
+# Documentation
+docs-paths: ["docs"]
+
+# Variables (can be overridden at runtime)
+vars:
+  # Date range for incremental models
+  start_date: '2025-01-01'
+  
+  # Low stock threshold
+  low_stock_threshold: 10
+
+# Seeds configuration
+seeds:
+  talastock:
+    +schema: seeds
+    +quote_columns: false
+
+# Snapshots configuration
+snapshots:
+  talastock:
+    +target_schema: snapshots
+    +strategy: timestamp
+    +updated_at: updated_at
+
+# On-run-start and on-run-end hooks
+on-run-start:
+  - "{{ log('Starting dbt run for Talastock', info=True) }}"
+
+on-run-end:
+  - "{{ log('Completed dbt run for Talastock', info=True) }}"
+
+# Dispatch configuration for dbt_utils
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['talastock', 'dbt_utils']

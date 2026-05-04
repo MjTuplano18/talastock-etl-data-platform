@@ -1,0 +1,38 @@
+# dbt Profile Configuration for Talastock Data Platform
+# This file tells dbt how to connect to your PostgreSQL warehouse
+
+talastock:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      port: 5433
+      user: warehouse_user
+      password: warehouse_pass
+      dbname: talastock_warehouse
+      schema: analytics
+      threads: 4
+      keepalives_idle: 0
+      connect_timeout: 10
+      search_path: analytics,staging,raw,public
+    
+    prod:
+      type: postgres
+      host: localhost
+      port: 5433
+      user: warehouse_user
+      password: warehouse_pass
+      dbname: talastock_warehouse
+      schema: analytics
+      threads: 8
+      keepalives_idle: 0
+      connect_timeout: 10
+      search_path: analytics,staging,raw,public
+
+# Notes:
+# - Default target is 'dev' (use --target prod to override)
+# - Port 5433 matches your warehouse Docker setup
+# - Schema 'analytics' is where dbt will create models
+# - Threads control parallelism (4 for dev, 8 for prod)
+# - search_path allows dbt to find tables in multiple schemas

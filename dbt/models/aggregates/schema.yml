@@ -1,0 +1,168 @@
+version: 2
+
+models:
+  - name: daily_sales_summary
+    description: "Daily aggregated sales metrics for fast dashboard queries"
+    columns:
+      - name: date_key
+        description: "Date key (YYYYMMDD)"
+        tests:
+          - unique
+          - not_null
+      
+      - name: date
+        description: "Full date"
+        tests:
+          - unique
+          - not_null
+      
+      - name: total_revenue
+        description: "Total revenue for the day"
+        tests:
+          - not_null
+      
+      - name: total_profit
+        description: "Total profit for the day"
+        tests:
+          - not_null
+      
+      - name: profit_margin_pct
+        description: "Profit margin percentage"
+      
+      - name: total_transactions
+        description: "Number of transactions"
+        tests:
+          - not_null
+      
+      - name: total_units_sold
+        description: "Total units sold"
+        tests:
+          - not_null
+      
+      - name: average_transaction_value
+        description: "Average transaction value"
+      
+      - name: unique_products_sold
+        description: "Number of unique products sold"
+        tests:
+          - not_null
+      
+      - name: unique_customers
+        description: "Number of unique customers"
+        tests:
+          - not_null
+  
+  - name: product_performance
+    description: "Product-level performance metrics and rankings"
+    columns:
+      - name: product_key
+        description: "Product key"
+        tests:
+          - unique
+          - not_null
+      
+      - name: sku
+        description: "Product SKU"
+        tests:
+          - unique
+          - not_null
+      
+      - name: name
+        description: "Product name"
+        tests:
+          - not_null
+      
+      - name: category
+        description: "Product category"
+        tests:
+          - not_null
+      
+      - name: total_revenue
+        description: "Total revenue generated"
+        tests:
+          - not_null
+      
+      - name: total_profit
+        description: "Total profit generated"
+        tests:
+          - not_null
+      
+      - name: total_units_sold
+        description: "Total units sold"
+        tests:
+          - not_null
+      
+      - name: revenue_rank
+        description: "Revenue ranking (1 = highest)"
+        tests:
+          - not_null
+      
+      - name: profit_rank
+        description: "Profit ranking (1 = highest)"
+        tests:
+          - not_null
+      
+      - name: performance_tier
+        description: "Performance tier (Top 10/Top 20/Middle/Bottom 10)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Top 10', 'Top 20', 'Middle', 'Bottom 10']
+      
+      - name: units_per_day
+        description: "Sales velocity (units per day)"
+  
+  - name: category_performance
+    description: "Category-level performance metrics and rankings"
+    columns:
+      - name: category
+        description: "Product category"
+        tests:
+          - unique
+          - not_null
+      
+      - name: total_products
+        description: "Number of products in category"
+        tests:
+          - not_null
+      
+      - name: total_revenue
+        description: "Total revenue generated"
+        tests:
+          - not_null
+      
+      - name: total_profit
+        description: "Total profit generated"
+        tests:
+          - not_null
+      
+      - name: profit_margin_pct
+        description: "Profit margin percentage"
+      
+      - name: total_units_sold
+        description: "Total units sold"
+        tests:
+          - not_null
+      
+      - name: revenue_rank
+        description: "Revenue ranking (1 = highest)"
+        tests:
+          - not_null
+      
+      - name: revenue_share_pct
+        description: "Revenue share percentage"
+      
+      - name: profit_rank
+        description: "Profit ranking (1 = highest)"
+        tests:
+          - not_null
+      
+      - name: profit_share_pct
+        description: "Profit share percentage"
+      
+      - name: performance_tier
+        description: "Performance tier (Top Performer/Average/Needs Attention)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Top Performer', 'Average', 'Needs Attention']

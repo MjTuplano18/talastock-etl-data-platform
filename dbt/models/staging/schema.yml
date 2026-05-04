@@ -1,0 +1,125 @@
+version: 2
+
+# Define raw data sources
+sources:
+  - name: raw
+    description: "Raw data loaded from CSV files"
+    database: talastock_warehouse
+    schema: raw
+    tables:
+      - name: products
+        description: "Raw product data"
+        columns:
+          - name: sku
+            description: "Product SKU (Stock Keeping Unit)"
+            tests:
+              - unique
+              - not_null
+          - name: price
+            description: "Selling price"
+            tests:
+              - not_null
+          
+      - name: sales
+        description: "Raw sales transactions"
+        columns:
+          - name: transaction_id
+            description: "Unique transaction identifier"
+            tests:
+              - unique
+              - not_null
+
+# Define staging models
+models:
+  - name: stg_products
+    description: "Cleaned and standardized product data"
+    columns:
+      - name: sku
+        description: "Product SKU - unique identifier"
+        tests:
+          - unique
+          - not_null
+      
+      - name: name
+        description: "Product name"
+        tests:
+          - not_null
+      
+      - name: category
+        description: "Product category"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Beverage', 'Snacks', 'Essentials', 'Personal Care', 'Household']
+      
+      - name: price
+        description: "Selling price in PHP"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "> 0"
+      
+      - name: cost_price
+        description: "Cost price in PHP"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      
+      - name: profit_margin_pct
+        description: "Profit margin percentage"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "BETWEEN -100 AND 100"
+  
+  - name: stg_sales
+    description: "Cleaned and standardized sales transactions"
+    columns:
+      - name: transaction_id
+        description: "Unique transaction identifier"
+        tests:
+          - unique
+          - not_null
+      
+      - name: product_sku
+        description: "Product SKU reference"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_products')
+              field: sku
+      
+      - name: quantity
+        description: "Quantity sold"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "> 0"
+      
+      - name: unit_price
+        description: "Price per unit"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "> 0"
+      
+      - name: total_amount
+        description: "Total transaction amount"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "> 0"
+      
+      - name: payment_method
+        description: "Payment method used"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Cash', 'GCash', 'Card']
+      
+      - name: customer_type
+        description: "Type of customer"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['walk-in', 'regular', 'wholesale']
