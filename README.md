@@ -1,6 +1,13 @@
-# 📊 Talastock Data Platform
+# 📊 Talastock ETL Data Platform
 
-A complete data engineering platform for learning ETL, data warehousing, and analytics.
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-13%2B-blue)](https://www.postgresql.org/)
+[![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-2.0%2B-red)](https://airflow.apache.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+A complete data engineering platform for learning ETL, data warehousing, and analytics. Built with Apache Airflow, PostgreSQL, and Python.
+
+**🎓 Perfect for**: Learning data engineering, building portfolio projects, understanding ETL pipelines
 
 **📁 New to this project?** Check [FILE_STRUCTURE.md](FILE_STRUCTURE.md) for navigation guide.
 
@@ -296,6 +303,30 @@ You've built a production-ready data platform from scratch!
 
 ---
 
+## 🤝 Contributing
+
+Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Built for learning data engineering concepts
+- Inspired by real-world retail analytics needs
+- Uses industry-standard tools (Airflow, PostgreSQL, Python)
+
+## 📞 Contact
+
+**MJ Tuplano**
+- GitHub: [@MjTuplano18](https://github.com/MjTuplano18)
+- Repository: [talastock-etl-data-platform](https://github.com/MjTuplano18/talastock-etl-data-platform)
+
+---
+
 **Last Updated**: May 4, 2026  
 **Status**: Production-ready ✅  
 **Data Quality**: 98.6% complete
+
+**⭐ If this project helped you learn, please give it a star!**
