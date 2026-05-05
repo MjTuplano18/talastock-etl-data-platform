@@ -1,119 +1,48 @@
-# SQL Queries for Data Warehouse
+# SQL Queries
 
-This folder contains all SQL queries for exploring and validating your data warehouse.
+Ready-to-run queries for exploring and validating the warehouse. Open pgAdmin, connect to `talastock_warehouse`, and paste these into the Query Tool.
 
-## 📁 Files
+---
 
-### 01_quick_queries.sql
-**Purpose**: Explore your data and discover business insights
+## Files
 
-**What's Inside**:
-- 15 ready-to-run queries
+### `01_quick_queries.sql`
+
+15 queries for business exploration:
 - Top products by revenue
-- Daily/monthly revenue trends
+- Daily and monthly revenue trends
 - Category performance
-- Sales patterns (day of week, time of day, payday effect)
-- Payment method and customer type analysis
+- Sales by day of week and hour
+- Payday effect analysis
+- Payment method breakdown
+- Customer type analysis
 - Overall business summary
 
-**How to Use**:
-1. Open pgAdmin: http://localhost:5050
-2. Navigate to: Servers → Talastock Warehouse → Databases → talastock_warehouse
-3. Right-click → Query Tool
-4. Copy and paste queries from this file
-5. Run them one by one or all at once
+### `02_data_quality_check.sql`
 
----
-
-### 02_data_quality_check.sql
-**Purpose**: Verify data integrity and quality
-
-**What's Inside**:
-- NULL value checks
-- Missing cost_price detection
-- Negative value checks
+Validation queries to verify data integrity:
+- NULL value checks across all layers
+- Orphaned foreign key detection
 - Revenue calculation verification
-- Orphaned records detection
 - Data completeness summary
-- Profit calculation validation
-
-**How to Use**:
-1. Open pgAdmin Query Tool
-2. Copy and paste queries from this file
-3. Run to verify your data quality
-4. All checks should pass (0 issues)
 
 ---
 
-## 🚀 Quick Start
+## Quick start
 
-### First Time Setup
-```bash
-# 1. Start warehouse (if not running)
-cd data-platform/warehouse
-docker-compose up -d
-
-# 2. Open pgAdmin
-http://localhost:5050
-Login: admin@talastock.com / admin
-
-# 3. Connect to warehouse
-Server: talastock-warehouse
-Host: talastock-warehouse
-Port: 5432
-Database: talastock_warehouse
-Username: warehouse_user
-Password: warehouse_pass
-```
-
-### Run Your First Query
 ```sql
--- Copy this into pgAdmin Query Tool
-SELECT 
-    TO_CHAR(SUM(total_revenue), 'FM₱999,999,999.00') as total_revenue,
-    TO_CHAR(SUM(total_profit), 'FM₱999,999,999.00') as total_profit,
-    TO_CHAR(AVG(profit_margin_pct), 'FM999.00%') as avg_profit_margin,
-    SUM(total_transactions) as total_transactions
+-- Verify data is loaded
+SELECT
+    'fact_sales'          AS table_name, COUNT(*) AS rows FROM analytics.fact_sales
+UNION ALL SELECT
+    'dim_products',                      COUNT(*) FROM analytics.dim_products
+UNION ALL SELECT
+    'daily_sales_summary',               COUNT(*) FROM analytics.daily_sales_summary;
+
+-- Revenue summary
+SELECT
+    TO_CHAR(SUM(total_revenue), 'FM₱999,999,999.00') AS total_revenue,
+    TO_CHAR(SUM(total_profit),  'FM₱999,999,999.00') AS total_profit,
+    ROUND(SUM(total_profit) / NULLIF(SUM(total_revenue), 0) * 100, 1) || '%' AS margin
 FROM analytics.daily_sales_summary;
 ```
-
----
-
-## 📊 What You'll Discover
-
-### Business Insights
-- Which products make the most money?
-- What's the payday effect on sales?
-- Which time of day is busiest?
-- Weekend vs weekday performance
-- Payment method preferences
-- Customer type behavior
-
-### Data Quality
-- Is all data loaded correctly?
-- Are there any NULL values?
-- Are calculations accurate?
-- Is data complete across all layers?
-
----
-
-## 💡 Tips
-
-1. **Start with Query #1** (Verify Data Loaded) to confirm everything is working
-2. **Run Query #15** (Overall Business Summary) to see your key metrics
-3. **Explore by category** using Query #4 to understand product mix
-4. **Check data quality** using `02_data_quality_check.sql` regularly
-
----
-
-## 🎯 Next Steps
-
-After exploring your data:
-1. Build dbt models (transform SQL into reusable models)
-2. Create a dashboard (visualize these insights)
-3. Try machine learning (forecast future sales)
-
----
-
-**Last Updated**: May 4, 2026  
-**Status**: Production-ready ✅

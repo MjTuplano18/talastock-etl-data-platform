@@ -9,6 +9,7 @@ const DAG_META: Record<string, { label: string; color: string; step: string }> =
   sales_etl_pipeline:      { label: 'Sales ETL',       color: '#60A5FA', step: '02' },
   warehouse_etl_pipeline:  { label: 'Warehouse ETL',   color: '#9B6DFF', step: '03' },
   dbt_pipeline:            { label: 'dbt Transform',   color: '#4ADE80', step: '04' },
+  forecasting_pipeline:    { label: 'Forecasting',     color: '#F472B6', step: '05' },
 }
 
 const STATE_CFG = {

@@ -15,6 +15,7 @@ Author: Talastock Data Platform Team
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
+from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 from datetime import datetime, timedelta
 import json
 import os
@@ -217,6 +218,17 @@ report_task = PythonOperator(
 )
 
 # ============================================================
+# Task 7: Trigger Forecasting Pipeline
+# ============================================================
+
+trigger_forecast_task = TriggerDagRunOperator(
+    task_id='trigger_forecasting_pipeline',
+    trigger_dag_id='forecasting_pipeline',
+    wait_for_completion=False,  # Fire and forget
+    dag=dag,
+)
+
+# ============================================================
 # Task Dependencies
 # ============================================================
 #
@@ -226,11 +238,13 @@ report_task = PythonOperator(
 #         ↓
 #      dbt_run
 #         ↓
-#     dbt_test          ← fails here if data quality issues found
+#     dbt_test
 #         ↓
 #  dbt_docs_generate
 #         ↓
 #   report_results
+#         ↓
+#  trigger_forecasting_pipeline
 #
 
-check_dbt_task >> dbt_debug_task >> dbt_run_task >> dbt_test_task >> dbt_docs_task >> report_task
+check_dbt_task >> dbt_debug_task >> dbt_run_task >> dbt_test_task >> dbt_docs_task >> report_task >> trigger_forecast_task

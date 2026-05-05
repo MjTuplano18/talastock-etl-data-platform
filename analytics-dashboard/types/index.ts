@@ -86,7 +86,37 @@ export interface DagRunHistory {
   error?: string
 }
 
-// dbt test definitions parsed from schema YAMLs
+// ── Forecasting ───────────────────────────────────────────────
+
+export interface ForecastRow {
+  forecast_date: string
+  category: string
+  predicted_revenue: number
+  predicted_units: number
+  confidence_lower: number
+  confidence_upper: number
+  model_version: string
+  mape: number | null
+  rmse: number | null
+  generated_at: string
+}
+
+export interface ForecastActualRow {
+  date: string
+  category: string
+  actual_revenue: number
+  predicted_revenue: number | null
+  confidence_lower: number | null
+  confidence_upper: number | null
+}
+
+export interface ForecastSummary {
+  category: string
+  total_predicted_30d: number
+  avg_daily_predicted: number
+  mape: number | null
+  days_forecasted: number
+}
 export interface DbtTestDef {
   model: string
   layer: 'staging' | 'marts' | 'aggregates'
