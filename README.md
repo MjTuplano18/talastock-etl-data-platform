@@ -265,6 +265,7 @@ data-platform/
 | [dbt](docs/05_PIPELINE_DBT.md) | Models, 104 tests, local dev commands |
 | [Forecasting](docs/06_PIPELINE_FORECASTING.md) | OLS model, multipliers, output tables |
 | [Troubleshooting](docs/07_TROUBLESHOOTING.md) | Common issues and fixes |
+| [Concepts & Tools](docs/08_CONCEPTS_AND_TOOLS.md) | Deep explanation of every tool and concept |
 
 ---
 

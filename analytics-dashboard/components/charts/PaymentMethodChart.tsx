@@ -25,12 +25,13 @@ function CustomTooltip({ active, payload }: any) {
     <div style={{
       background: 'var(--surface-2)', border: '1px solid var(--border)',
       borderRadius: 12, padding: '10px 14px', fontSize: 12,
-      boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+      boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+      fontFamily: 'Inter, sans-serif',
     }}>
-      <p style={{ color: 'var(--text)', fontWeight: 600, marginBottom: 4 }}>{d.method}</p>
-      <p style={{ color: 'var(--text-muted)' }}>Transactions: <span style={{ color: 'var(--text)' }}>{d.transactions.toLocaleString()}</span></p>
-      <p style={{ color: 'var(--text-muted)' }}>Revenue: <span style={{ color: 'var(--text)' }}>{formatCurrency(d.revenue)}</span></p>
-      <p style={{ color: 'var(--text-muted)' }}>Share: <span style={{ color, fontWeight: 600 }}>{d.pct}%</span></p>
+      <p style={{ color: 'var(--text)', fontWeight: 700, marginBottom: 4 }}>{d.method}</p>
+      <p style={{ color: 'var(--text-muted)' }}>Transactions: <span style={{ color: 'var(--text)', fontWeight: 600 }}>{d.transactions.toLocaleString()}</span></p>
+      <p style={{ color: 'var(--text-muted)' }}>Revenue: <span style={{ color: 'var(--text)', fontWeight: 600 }}>{formatCurrency(d.revenue)}</span></p>
+      <p style={{ color: 'var(--text-muted)' }}>Share: <span style={{ color, fontWeight: 700 }}>{d.pct}%</span></p>
     </div>
   )
 }
@@ -61,7 +62,10 @@ export function PaymentMethodChart({ data }: { data: PaymentData[] }) {
                 <Cell key={i} fill={METHOD_COLORS[d.method] ?? '#E8547A'} />
               ))}
             </Pie>
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip
+              content={<CustomTooltip />}
+              wrapperStyle={{ zIndex: 50 }}
+            />
           </PieChart>
         </ResponsiveContainer>
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Play, ChevronDown, ChevronUp, Loader2, CheckCircle2, XCircle } from 'lucide-react'
 
 interface TriggerResult {
@@ -243,6 +243,22 @@ interface ParamInputProps {
 }
 
 function ParamInput({ label, value, min, max, step = 1, onChange }: ParamInputProps) {
+  const [localValue, setLocalValue] = useState(String(value))
+
+  // Sync if parent value changes externally
+  useEffect(() => { setLocalValue(String(value)) }, [value])
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setLocalValue(e.target.value)
+  }
+
+  function handleBlur() {
+    const num = parseInt(localValue, 10)
+    const clamped = isNaN(num) ? min : Math.max(min, Math.min(max, num))
+    setLocalValue(String(clamped))
+    onChange(clamped)
+  }
+
   return (
     <div className="space-y-1">
       <label className="text-[10px] font-medium uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>
@@ -250,11 +266,12 @@ function ParamInput({ label, value, min, max, step = 1, onChange }: ParamInputPr
       </label>
       <input
         type="number"
-        value={value}
+        value={localValue}
         min={min}
         max={max}
         step={step}
-        onChange={e => onChange(Math.max(min, Math.min(max, Number(e.target.value))))}
+        onChange={handleChange}
+        onBlur={handleBlur}
         className="w-full rounded-lg px-3 py-2 text-sm tabular-nums outline-none transition-all"
         style={{
           background: 'var(--surface-2)',
@@ -262,7 +279,6 @@ function ParamInput({ label, value, min, max, step = 1, onChange }: ParamInputPr
           color: 'var(--text)',
         }}
         onFocus={e => (e.currentTarget.style.borderColor = '#FBBF24')}
-        onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
       />
     </div>
   )
