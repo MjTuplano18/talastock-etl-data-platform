@@ -26,6 +26,7 @@ const DAG_LABELS: Record<string, string> = {
   sales_etl_pipeline:      'Sales ETL',
   warehouse_etl_pipeline:  'Warehouse ETL',
   dbt_pipeline:            'dbt Transform',
+  forecasting_pipeline:    'Forecasting',
 }
 
 const STATE_CONFIG = {

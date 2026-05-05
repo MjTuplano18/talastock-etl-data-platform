@@ -54,7 +54,7 @@ services:
     command: webserver
     environment:
       <<: *airflow-common-env
-      _PIP_ADDITIONAL_REQUIREMENTS: 'dbt-core==1.7.17 dbt-postgres==1.7.17 faker==24.0.0 openpyxl==3.1.2'
+      _PIP_ADDITIONAL_REQUIREMENTS: 'dbt-core==1.7.17 dbt-postgres==1.7.17 faker==24.0.0 openpyxl==3.1.2 numpy>=1.26.0'
     ports:
       - "8080:8080"
     healthcheck:
@@ -77,7 +77,7 @@ services:
     command: scheduler
     environment:
       <<: *airflow-common-env
-      _PIP_ADDITIONAL_REQUIREMENTS: 'dbt-core==1.7.17 dbt-postgres==1.7.17 faker==24.0.0 openpyxl==3.1.2'
+      _PIP_ADDITIONAL_REQUIREMENTS: 'dbt-core==1.7.17 dbt-postgres==1.7.17 faker==24.0.0 openpyxl==3.1.2 numpy>=1.26.0'
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]
       interval: 30s

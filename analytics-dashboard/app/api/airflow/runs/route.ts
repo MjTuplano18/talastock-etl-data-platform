@@ -11,6 +11,7 @@ const DAG_IDS = [
   'sales_etl_pipeline',
   'warehouse_etl_pipeline',
   'dbt_pipeline',
+  'forecasting_pipeline',
 ]
 
 // GET /api/airflow/runs?limit=5

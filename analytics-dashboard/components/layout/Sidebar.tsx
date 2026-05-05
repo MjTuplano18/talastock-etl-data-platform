@@ -2,16 +2,17 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, TrendingUp, Package, Activity, Database, Sun, Moon, ShieldCheck } from 'lucide-react'
+import { LayoutDashboard, TrendingUp, Package, Activity, Database, Sun, Moon, ShieldCheck, Brain } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useTheme } from '@/context/ThemeContext'
 
 const navItems = [
-  { label: 'Overview',  href: '/',         icon: LayoutDashboard },
-  { label: 'Sales',     href: '/sales',    icon: TrendingUp },
-  { label: 'Products',  href: '/products', icon: Package },
-  { label: 'Pipeline',  href: '/pipeline', icon: Activity },
-  { label: 'Quality',   href: '/quality',  icon: ShieldCheck },
+  { label: 'Overview',  href: '/',          icon: LayoutDashboard },
+  { label: 'Sales',     href: '/sales',     icon: TrendingUp },
+  { label: 'Products',  href: '/products',  icon: Package },
+  { label: 'Pipeline',  href: '/pipeline',  icon: Activity },
+  { label: 'Quality',   href: '/quality',   icon: ShieldCheck },
+  { label: 'Forecast',  href: '/forecast',  icon: Brain },
 ]
 
 export function Sidebar() {

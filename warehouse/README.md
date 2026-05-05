@@ -1,337 +1,124 @@
-# Data Warehouse - PostgreSQL
+# Warehouse
 
-## 🎯 Overview
-
-This is the **Talastock Data Warehouse** - a separate PostgreSQL database optimized for analytics (OLAP). It's completely independent from the operational database (OLTP).
+PostgreSQL 13 data warehouse running in Docker. Separate from the application database (OLTP) — this is the OLAP layer optimised for analytics queries.
 
 ---
 
-## 🏗️ Architecture
-
-### Three-Layer Design
-
-```
-┌─────────────────────────────────────────┐
-│  RAW LAYER (raw schema)                 │
-│  - Exact copy of source data            │
-│  - No transformations                   │
-│  - Audit trail                          │
-└─────────────────┬───────────────────────┘
-                  ↓
-┌─────────────────────────────────────────┐
-│  STAGING LAYER (staging schema)         │
-│  - Cleaned data                         │
-│  - Validated types                      │
-│  - Standardized format                  │
-└─────────────────┬───────────────────────┘
-                  ↓
-┌─────────────────────────────────────────┐
-│  ANALYTICS LAYER (analytics schema)     │
-│  - Star schema                          │
-│  - Fact & dimension tables              │
-│  - Pre-aggregated metrics               │
-└─────────────────────────────────────────┘
-```
-
----
-
-## 📊 Schema Design
-
-### Raw Layer (`raw` schema)
-
-**Purpose**: Store unchanged data from source files
-
-**Tables**:
-- `raw.products` - Exact copy of products CSV
-- `raw.sales` - Exact copy of sales CSV
-
-**Columns include**:
-- All source columns
-- `loaded_at` - When data was loaded
-- `source_file` - Which file it came from
-- `load_id` - Batch identifier
-
----
-
-### Staging Layer (`staging` schema)
-
-**Purpose**: Cleaned and validated data
-
-**Tables**:
-- `staging.products` - Cleaned products with constraints
-- `staging.sales` - Cleaned sales with extracted time dimensions
-
-**Transformations applied**:
-- Remove duplicates
-- Handle missing values
-- Fix data types
-- Add calculated fields
-- Extract time dimensions
-
----
-
-### Analytics Layer (`analytics` schema)
-
-**Purpose**: Star schema optimized for business intelligence
-
-#### Dimension Tables:
-
-**`dim_products`** - Product attributes
-- `product_key` (surrogate key)
-- `sku` (natural key)
-- Product details (name, category, brand, price, cost)
-- SCD Type 2 support (valid_from, valid_to)
-
-**`dim_dates`** - Date dimension
-- `date_key` (YYYYMMDD format)
-- Calendar attributes (year, month, week, day)
-- Business attributes (is_weekend, is_payday, is_holiday)
-
-**`dim_times`** - Time dimension
-- `time_key` (HHMMSS format)
-- Time attributes (hour, minute, second)
-- Time-of-day categories (Morning, Afternoon, Evening, Night)
-- Peak hour indicators
-
-#### Fact Table:
-
-**`fact_sales`** - Sales transactions (center of star)
-- `sale_key` (surrogate key)
-- `transaction_id` (natural key)
-- Foreign keys to all dimensions
-- Measures: quantity, unit_price, total_amount, cost, profit
-
-#### Aggregate Tables:
-
-**`daily_sales_summary`** - Daily metrics
-- Total revenue, cost, profit
-- Transaction count, units sold
-- Average transaction value
-
-**`product_performance`** - Product metrics
-- Revenue, cost, profit by product
-- Units sold, transaction count
-- Rankings
-
-**`category_performance`** - Category metrics
-- Revenue, cost, profit by category
-- Units sold, unique products
-
----
-
-## 🚀 Quick Start
-
-### Start the Warehouse (with pgAdmin)
+## Quick start
 
 ```bash
 cd data-platform/warehouse
 docker-compose up -d
 ```
 
-This starts:
-- ✅ PostgreSQL warehouse (port 5433)
-- ✅ pgAdmin web UI (port 5050)
-
-### Access pgAdmin (Visual Database UI)
-
-Open your browser:
-```
-http://localhost:5050
-```
-
-**Login:**
-- Email: `admin@talastock.com`
-- Password: `admin`
-
-**See `PGADMIN_SETUP.md` for detailed setup instructions!**
-
-### Check Status
-
-```bash
-docker ps --filter "name=talastock"
-```
-
-### Connect to Warehouse (Command Line)
-
-```bash
-docker exec -it talastock-warehouse psql -U warehouse_user -d talastock_warehouse
-```
-
-### Stop Everything
-
-```bash
-docker-compose down
-```
+| Service | URL / Port | Credentials |
+|---|---|---|
+| PostgreSQL | `localhost:5433` | warehouse_user / warehouse_pass |
+| pgAdmin | http://localhost:5050 | admin@talastock.com / admin |
 
 ---
 
-## 🔌 Connection Details
+## Schema
 
-- **Host**: localhost
-- **Port**: 5433 (to avoid conflict with default PostgreSQL)
-- **Database**: talastock_warehouse
-- **User**: warehouse_user
-- **Password**: warehouse_pass
+Three layers, each in its own PostgreSQL schema:
 
-**Connection String**:
 ```
-postgresql://warehouse_user:warehouse_pass@localhost:5433/talastock_warehouse
+raw.*          Exact copy of source CSVs. No transformations. Audit trail.
+staging.*      Cleaned, typed, deduplicated. Business rules applied.
+analytics.*    Star schema. Optimised for BI queries.
 ```
+
+### Analytics layer tables
+
+| Table | Rows | Description |
+|---|---|---|
+| `dim_products` | ~100 | Product attributes + surrogate key |
+| `dim_dates` | ~200 | Calendar attributes + payday/weekend flags |
+| `dim_times` | 24 | Hourly time slots + peak hour flag |
+| `fact_sales` | ~9,700 | Sales transactions (NaN-filtered) |
+| `daily_sales_summary` | ~200 | Pre-aggregated daily metrics |
+| `product_performance` | ~100 | Revenue/profit rankings per product |
+| `category_performance` | 5 | Revenue/profit metrics per category |
+| `forecast_sales` | ~150 | 30-day revenue forecasts per category |
+| `forecast_accuracy` | grows | Retrospective forecast vs actual |
 
 ---
 
-## 📝 Useful Commands
+## Creating the schema
 
-### List all schemas
-```sql
-\dn
+Run these SQL files in pgAdmin in order:
+
+```
+schema/01_raw_layer.sql
+schema/02_staging_layer.sql
+schema/03_analytics_layer.sql
+schema/04_forecast_layer.sql
 ```
 
-### List tables in a schema
-```sql
-\dt raw.*
-\dt staging.*
-\dt analytics.*
-```
-
-### Describe a table
-```sql
-\d+ analytics.fact_sales
-```
-
-### Count rows in a table
-```sql
-SELECT COUNT(*) FROM analytics.fact_sales;
-```
-
-### View sample data
-```sql
-SELECT * FROM analytics.fact_sales LIMIT 10;
-```
+The Airflow pipelines create tables automatically if they don't exist, but running the schema files first gives you the full structure with comments and indexes.
 
 ---
 
-## 📊 Sample Queries
+## Connecting from pgAdmin
 
-### Daily Revenue
-```sql
-SELECT 
-    date,
-    total_revenue,
-    total_transactions,
-    average_transaction_value
-FROM analytics.daily_sales_summary
-ORDER BY date DESC
-LIMIT 30;
-```
+1. Right-click **Servers** → **Register → Server**
+2. **General**: Name = `Talastock Warehouse`
+3. **Connection**:
+   - Host: `talastock-warehouse` (container name, not localhost)
+   - Port: `5432`
+   - Database: `talastock_warehouse`
+   - Username: `warehouse_user`
+   - Password: `warehouse_pass`
 
-### Top 10 Products
+See `PGADMIN_SETUP.md` for screenshots and tips.
+
+---
+
+## Useful queries
+
 ```sql
-SELECT 
-    product_name,
-    category,
-    total_revenue,
-    total_units_sold,
-    revenue_rank
+-- Row counts across all layers
+SELECT 'raw.products'              AS table_name, COUNT(*) FROM raw.products
+UNION ALL SELECT 'raw.sales',                     COUNT(*) FROM raw.sales
+UNION ALL SELECT 'analytics.fact_sales',          COUNT(*) FROM analytics.fact_sales
+UNION ALL SELECT 'analytics.daily_sales_summary', COUNT(*) FROM analytics.daily_sales_summary;
+
+-- Revenue summary
+SELECT
+    SUM(total_revenue)::numeric(12,2)  AS total_revenue,
+    SUM(total_profit)::numeric(12,2)   AS total_profit,
+    ROUND(SUM(total_profit) / NULLIF(SUM(total_revenue), 0) * 100, 1) AS margin_pct
+FROM analytics.daily_sales_summary;
+
+-- Top 10 products by revenue
+SELECT product_name, category, total_revenue, revenue_rank
 FROM analytics.product_performance
 ORDER BY revenue_rank
 LIMIT 10;
-```
 
-### Sales by Category
-```sql
-SELECT 
-    category,
-    total_revenue,
-    total_profit,
-    profit_margin_pct,
-    revenue_rank
-FROM analytics.category_performance
-ORDER BY revenue_rank;
-```
-
-### Sales by Day of Week
-```sql
-SELECT 
+-- Sales by day of week
+SELECT
     d.day_of_week_name,
-    SUM(f.total_amount) as total_revenue,
-    COUNT(*) as transaction_count,
-    AVG(f.total_amount) as avg_transaction
+    SUM(f.total_amount) AS revenue,
+    COUNT(*)            AS transactions
 FROM analytics.fact_sales f
 JOIN analytics.dim_dates d ON f.date_key = d.date_key
 GROUP BY d.day_of_week_name, d.day_of_week
 ORDER BY d.day_of_week;
 ```
 
-### Peak Hours Analysis
-```sql
-SELECT 
-    t.hour,
-    t.time_of_day,
-    t.is_peak_hour,
-    SUM(f.total_amount) as total_revenue,
-    COUNT(*) as transaction_count
-FROM analytics.fact_sales f
-JOIN analytics.dim_times t ON f.time_key = t.time_key
-GROUP BY t.hour, t.time_of_day, t.is_peak_hour
-ORDER BY t.hour;
-```
+More queries in `sql/01_quick_queries.sql`.
 
 ---
 
-## 🔧 Maintenance
+## Backup and restore
 
-### Backup Database
 ```bash
-docker exec talastock-warehouse pg_dump -U warehouse_user talastock_warehouse > backup.sql
+# Backup
+docker exec talastock-warehouse \
+  pg_dump -U warehouse_user talastock_warehouse > backup.sql
+
+# Restore
+docker exec -i talastock-warehouse \
+  psql -U warehouse_user talastock_warehouse < backup.sql
 ```
-
-### Restore Database
-```bash
-docker exec -i talastock-warehouse psql -U warehouse_user talastock_warehouse < backup.sql
-```
-
-### View Logs
-```bash
-docker logs talastock-warehouse
-```
-
-### Restart Warehouse
-```bash
-docker-compose restart
-```
-
----
-
-## 📚 Next Steps
-
-1. **Modify Airflow ETL** - Add tasks to load data into warehouse
-2. **Populate Dimensions** - Load dim_products, dim_dates, dim_times
-3. **Load Fact Table** - Load fact_sales from staging
-4. **Calculate Metrics** - Populate aggregate tables
-5. **Query Analytics** - Run business intelligence queries
-
----
-
-## 🎓 Learning Resources
-
-### Star Schema Design
-- Fact tables store measurable events (sales)
-- Dimension tables store descriptive attributes (products, dates)
-- Foreign keys connect fact to dimensions
-- Optimized for aggregation queries (SUM, COUNT, AVG)
-
-### OLTP vs OLAP
-- **OLTP** (Operational): Fast writes, single-record lookups
-- **OLAP** (Analytical): Complex aggregations, scanning millions of rows
-- **Separation**: Keeps analytics from slowing down the app
-
-### Three-Layer Architecture
-- **Raw**: Audit trail, unchanged data
-- **Staging**: Cleaned, validated data
-- **Analytics**: Business-ready models
-
----
-
-**Status**: Warehouse Ready ✅  
-**Next**: Modify Airflow ETL to load data

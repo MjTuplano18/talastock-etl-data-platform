@@ -54,6 +54,16 @@ const DAGS = [
     border: 'rgba(74,222,128,0.22)',
     hasParams: false,
   },
+  {
+    id: 'forecasting_pipeline',
+    label: 'Forecasting',
+    description: 'Train ML model and generate 30-day revenue forecasts',
+    step: '05',
+    color: '#F472B6',
+    bg: 'rgba(244,114,182,0.08)',
+    border: 'rgba(244,114,182,0.22)',
+    hasParams: false,
+  },
 ] as const
 
 type DagId = typeof DAGS[number]['id']
@@ -74,6 +84,7 @@ export function TriggerPanel({ onTriggered }: TriggerPanelProps) {
     sales_etl_pipeline:      { status: 'idle' },
     warehouse_etl_pipeline:  { status: 'idle' },
     dbt_pipeline:            { status: 'idle' },
+    forecasting_pipeline:    { status: 'idle' },
   })
 
   function setDagState(dagId: DagId, state: TriggerState) {
@@ -196,7 +207,7 @@ export function TriggerPanel({ onTriggered }: TriggerPanelProps) {
           </div>
 
           {/* DAG trigger buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-3">
             {DAGS.map(dag => {
               const state = triggerStates[dag.id]
               return (
@@ -211,7 +222,7 @@ export function TriggerPanel({ onTriggered }: TriggerPanelProps) {
           </div>
 
           <p className="text-[10px]" style={{ color: 'var(--text-muted)' }}>
-            Triggering Data Generator automatically chains → Sales ETL → Warehouse ETL → dbt Transform.
+            Triggering Data Generator automatically chains → Sales ETL → Warehouse ETL → dbt Transform → Forecasting.
             You can also trigger each stage independently.
           </p>
         </div>
