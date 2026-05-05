@@ -10,10 +10,11 @@ function CustomTooltip({ active, payload, label }: any) {
     <div style={{
       background: 'var(--surface-2)', border: '1px solid var(--border)',
       borderRadius: 12, padding: '10px 14px', fontSize: 12,
-      boxShadow: '0 8px 32px rgba(0,0,0,0.2)', color: 'var(--text-muted)',
+      boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+      fontFamily: 'Inter, sans-serif',
     }}>
-      <p style={{ marginBottom: 4 }}>{label}</p>
-      <p>Revenue: <span style={{ color: 'var(--accent)', fontWeight: 600 }}>
+      <p style={{ color: 'var(--text)', fontWeight: 700, marginBottom: 4 }}>{label}</p>
+      <p style={{ color: 'var(--text-muted)' }}>Revenue: <span style={{ color: 'var(--accent)', fontWeight: 700 }}>
         ₱{Number(payload[0]?.value).toLocaleString()}
       </span></p>
     </div>

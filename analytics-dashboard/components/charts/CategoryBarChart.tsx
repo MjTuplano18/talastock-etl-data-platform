@@ -13,10 +13,11 @@ function CustomTooltip({ active, payload }: any) {
       background: 'var(--surface-2)', border: '1px solid var(--border)',
       borderRadius: 12, padding: '10px 14px', fontSize: 12,
       boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+      fontFamily: 'Inter, sans-serif',
     }}>
-      <p style={{ color: 'var(--text)', fontWeight: 600, marginBottom: 4 }}>{d.category}</p>
-      <p style={{ color: 'var(--text-muted)' }}>Revenue: <span style={{ color: 'var(--accent)' }}>₱{Number(d.total_revenue).toLocaleString()}</span></p>
-      <p style={{ color: 'var(--text-muted)' }}>Margin: <span style={{ color: 'var(--green)' }}>{d.profit_margin_pct}%</span></p>
+      <p style={{ color: 'var(--text)', fontWeight: 700, marginBottom: 4 }}>{d.category}</p>
+      <p style={{ color: 'var(--text-muted)' }}>Revenue: <span style={{ color: 'var(--accent)', fontWeight: 700 }}>₱{Number(d.total_revenue).toLocaleString()}</span></p>
+      <p style={{ color: 'var(--text-muted)' }}>Margin: <span style={{ color: 'var(--green)', fontWeight: 700 }}>{d.profit_margin_pct}%</span></p>
     </div>
   )
 }
