@@ -242,7 +242,7 @@ def load_staging_products():
     
     try:
         # Truncate staging table
-        cur.execute("TRUNCATE TABLE staging.products")
+        cur.execute("TRUNCATE TABLE staging.products CASCADE")
         
         # Transform and load
         query = """
@@ -295,10 +295,11 @@ def load_staging_sales():
     cur = conn.cursor()
     
     try:
-        # Truncate staging table
-        cur.execute("TRUNCATE TABLE staging.sales")
+        # Truncate and reload in a single transaction so retries are safe
+        cur.execute("TRUNCATE TABLE staging.sales CASCADE")
         
-        # Transform and load
+        # Transform and load — use DISTINCT ON to deduplicate by transaction_id
+        # (source CSV may contain duplicate transaction IDs; keep the first occurrence)
         query = """
             INSERT INTO staging.sales (
                 transaction_id, timestamp, product_sku, product_name,
@@ -307,7 +308,7 @@ def load_staging_sales():
                 sale_date, sale_time, year, month, day, day_of_week, hour,
                 source_load_id
             )
-            SELECT 
+            SELECT DISTINCT ON (transaction_id)
                 transaction_id,
                 timestamp,
                 product_sku,
@@ -330,6 +331,7 @@ def load_staging_sales():
                 load_id
             FROM raw.sales
             WHERE quantity > 0 AND total_amount >= 0
+            ORDER BY transaction_id, timestamp
         """
         cur.execute(query)
         rows = cur.rowcount
@@ -338,6 +340,9 @@ def load_staging_sales():
         print(f"✅ Loaded {rows} sales into staging.sales")
         print("=" * 60)
         
+    except Exception:
+        conn.rollback()
+        raise
     finally:
         cur.close()
         conn.close()

@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Dark theme (default) ─────────────────────────────────── */
+:root,
+html.dark {
+  --bg:           #13111C;
+  --surface:      #1E1A2E;
+  --surface-2:    #252038;
+  --border:       #2E2A42;
+  --border-soft:  #2E2A4260;
+
+  --text:         #F0EBF8;
+  --text-muted:   #7B7494;
+
+  --accent:       #E8547A;
+  --accent-dim:   #C43D62;
+  --purple:       #9B6DFF;
+  --purple-dim:   #7C52E0;
+  --blue:         #5B8DEF;
+  --green:        #4ADE80;
+  --amber:        #FBBF24;
+  --danger:       #F87171;
+
+  --card-bg:      linear-gradient(135deg, #252038 0%, #1E1A2E 100%);
+  --sidebar-bg:   linear-gradient(180deg, #1E1A2E 0%, #13111C 100%);
+  --hover-row:    #2E2A4230;
+  --active-nav:   linear-gradient(135deg, #E8547A20, #9B6DFF20);
+  --active-border:#E8547A40;
+  --scrollbar-bg: #1E1A2E;
+  --scrollbar-thumb: #2E2A42;
+}
+
+/* ─── Light theme ───────────────────────────────────────────── */
+html.light {
+  --bg:           #F0EDF8;
+  --surface:      #FAFAFA;
+  --surface-2:    #F3F0FA;
+  --border:       #DDD8EE;
+  --border-soft:  #DDD8EE90;
+
+  --text:         #1E1A2E;
+  --text-muted:   #7B7494;
+
+  --accent:       #E8547A;
+  --accent-dim:   #C43D62;
+  --purple:       #7C52E0;
+  --purple-dim:   #6040C0;
+  --blue:         #4070D0;
+  --green:        #16A34A;
+  --amber:        #D97706;
+  --danger:       #DC2626;
+
+  --card-bg:      linear-gradient(135deg, #FAFAFA 0%, #F3F0FA 100%);
+  --sidebar-bg:   linear-gradient(180deg, #FAFAFA 0%, #F0EDF8 100%);
+  --hover-row:    #DDD8EE40;
+  --active-nav:   linear-gradient(135deg, #E8547A15, #9B6DFF15);
+  --active-border:#E8547A50;
+  --scrollbar-bg: #F0EDF8;
+  --scrollbar-thumb: #DDD8EE;
+}
+
+/* ─── Base ──────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-bg); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+
+/* ─── Utility classes using CSS vars ────────────────────────── */
+.dp-bg       { background-color: var(--bg); }
+.dp-surface  { background: var(--card-bg); }
+.dp-border   { border-color: var(--border); }
+.dp-text     { color: var(--text); }
+.dp-muted    { color: var(--text-muted); }
+.dp-accent   { color: var(--accent); }
+.dp-purple   { color: var(--purple); }
+.dp-green    { color: var(--green); }
+.dp-amber    { color: var(--amber); }
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

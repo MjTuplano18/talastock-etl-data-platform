@@ -22,6 +22,8 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
     # Mount dbt project so Airflow can run dbt commands
     - ${AIRFLOW_PROJ_DIR:-..}/dbt:/opt/airflow/dbt
+    # Mount data-generator so Airflow can read CSV files
+    - ${AIRFLOW_PROJ_DIR:-..}/data-generator:/opt/airflow/data-generator
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
@@ -50,6 +52,9 @@ services:
   airflow-webserver:
     <<: *airflow-common
     command: webserver
+    environment:
+      <<: *airflow-common-env
+      _PIP_ADDITIONAL_REQUIREMENTS: 'dbt-core==1.7.17 dbt-postgres==1.7.17 faker==24.0.0 openpyxl==3.1.2'
     ports:
       - "8080:8080"
     healthcheck:
@@ -70,6 +75,9 @@ services:
   airflow-scheduler:
     <<: *airflow-common
     command: scheduler
+    environment:
+      <<: *airflow-common-env
+      _PIP_ADDITIONAL_REQUIREMENTS: 'dbt-core==1.7.17 dbt-postgres==1.7.17 faker==24.0.0 openpyxl==3.1.2'
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]
       interval: 30s
